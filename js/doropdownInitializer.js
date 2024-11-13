@@ -27,7 +27,7 @@ const stages = [
 
 const rules = [
     { name: "ガチエリア", path: "area.png" },
-    { name: "ガチヤグラ", path: "tower.png" },
+    { name: "ガチヤグラ", path: "yagura.png" },
     { name: "ガチホコ", path: "hoko.png" },
     { name: "ガチアサリ", path: "asari.png" },
     { name: "ナワバリバトル", path: "nawabari.png" },
