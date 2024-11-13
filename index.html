@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Fira+Sans&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+    <title>Splatoon3配信サムネ画像生成ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="content">
+    <div class="container">
+        <header class="main-title">
+            <img src="page_icon.png" alt="アイコン" class="title-icon">
+            <h1>Splatoon3配信サムネ画像生成ツール</h1>
+        </header>
+        <div class="top-section">
+            <!-- ステージセクション -->
+            <div class="section">
+                <h2>ステージ</h2>
+                <div class="stage-selection">
+                    <select id="stage1"></select>
+                    <select id="stage2"></select>
+                </div>
+            </div>
+        <!-- ステージ選択 -->
+
+            <div class="section">
+                <h2>ルール</h2>
+                <select id="rule"></select>
+            </div>
+            
+            <div class="section">
+                <h2>背景画像</h2>
+                <div class="file-input-wrapper">
+                    <label class="file-input-label" for="background">背景画像を選択</label>
+                    <input type="file" id="background" accept="image/*" onchange="previewBackgroundImage()">
+                </div>
+                <!-- プレビュー表示領域 -->
+                <div id="background-preview" class="background-preview"></div>
+            </div>
+        </div>
+
+        <div class="generate-button-container">
+            <button onclick="generateImage()">生成</button>
+            <button id="saveButton" onclick="saveImage()" disabled>画像を保存</button>
+        </div>
+
+        <!-- プレビューエリア -->
+        <div class="preview" id="preview">
+            プレビューがここに表示されます
+        </div>
+    </div>
+</div>
+<!-- コピーライトのフッター -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> <a href="https://twitter.com/yuyuyuyu_spla" target="_blank" rel="noopener noreferrer">Yuhi (@yuyuyuyu_spla)</a>. All rights reserved.</p>
+</footer>
+
+<script>
+    // 現在の年を自動的に設定
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="js/imageGenerator.js"></script>
+<script src="js/previewBackgroundImage.js"></script>
+<script src="js/doropdownInitializer.js"></script>
+</body>
+</html>
