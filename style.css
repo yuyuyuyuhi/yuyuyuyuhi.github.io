@@ -51,6 +51,7 @@ body, html {
 }
 .section h2 {
     font-size: 18px;
+    font-weight: 400;
     margin-bottom: 20px;
     padding: 10px;
     color: white;
@@ -119,7 +120,7 @@ body, html {
 .generate-button-container button {
     height: 50px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: medium;
     color: white;
     background-color: #5D3A6D;
     border: none;
