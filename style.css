@@ -1,6 +1,7 @@
 body, html {
     font-family: "Zen Maru Gothic", serif;
     font-weight: 500;
+    color: #2f2f2f;
     font-style: normal;
     margin: 0;
     padding: 0;
@@ -12,6 +13,7 @@ body, html {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #2f2f2f;
     padding: 20px;
     font-family: "Zen Maru Gothic", serif;
     font-weight: 700;
@@ -234,4 +236,29 @@ select:hover {
     padding: 10px;
     font-family: "Zen Maru Gothic", serif;
     font-weight: 400;
+}
+
+.terms-section {
+    background-color: #f9f9f9;
+    border-radius: 8px; 
+    padding: 20px;
+    margin: 40px auto;
+    /* max-width: 800px;  */
+}
+.terms-section h2 {
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center; 
+}
+.terms-list {
+    list-style-type: disc;
+    font-weight: 400;
+    padding-left: 20px;
+    font-size: 1em;
+}
+
+.terms-list li {
+    margin-bottom: 10px;
 }
