@@ -2,7 +2,8 @@ let generatedImage = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded event triggered");
-
+    const handDrawnRadio = document.querySelector('input[name="ruleIconType"][value="handDrawn"]');
+    handDrawnRadio.checked = true;
     populateDropdown("stage1", stages);
     populateDropdown("stage2", stages);
     populateDropdown("rule", rules);
@@ -17,6 +18,7 @@ function generateImage() {
     const stage2 = document.getElementById('stage2').value;
     const rule = document.getElementById('rule').value;
     const background = document.getElementById('background').files[0];
+    const forground = document.getElementById('forground').files[0];
 
     if (!background) {
         alert('背景画像をアップロードしてください。');
@@ -81,26 +83,51 @@ function generateImage() {
 
                     context.beginPath();
                     context.arc(iconX + iconSize / 2, iconY + iconSize / 2, iconSize / 1.5, 0, Math.PI * 2);
-                    context.fillStyle = "black";
+                    if (ruleIconType === "handDrawn") {
+                        context.fillStyle = "white";
+                    } else {
+                        context.fillStyle = "black";
+                    }
                     context.fill();
                     context.lineWidth = 10;
-                    context.strokeStyle = "white";
+                    if (ruleIconType === "handDrawn") {
+                        context.strokeStyle = "black";
+                    } else{
+                        context.strokeStyle = "white";
+                    }
                     context.stroke();
 
                     context.drawImage(ruleIcon, iconX, iconY, iconSize, iconSize);
 
-                    const preview = document.getElementById('preview');
-                    preview.innerHTML = '';
-                    generatedImage = canvas.toDataURL();
-                    const resultImg = new Image();
-                    resultImg.src = generatedImage;
-                    preview.appendChild(resultImg);
+                    if (forground) {
+                        const fgImg = new Image();
+                        fgImg.src = URL.createObjectURL(forground);
+                        fgImg.onload = () => {
+                            const fgScale = Math.min(canvas.width / fgImg.width, canvas.height / fgImg.height);
+                            const fgX = (canvas.width - fgImg.width * fgScale) / 2;
+                            const fgY = (canvas.height - fgImg.height * fgScale) / 2;
+                            context.drawImage(fgImg, fgX, fgY, fgImg.width * fgScale, fgImg.height * fgScale);
 
-                    updateSaveButtonState();
+                            finalizeImage(canvas);
+                        };
+                    } else {
+                        finalizeImage(canvas);
+                    }
                 };
             };
         };
     };
+}
+
+function finalizeImage(canvas) {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    const generatedImage = canvas.toDataURL();
+    const resultImg = new Image();
+    resultImg.src = generatedImage;
+    preview.appendChild(resultImg);
+
+    updateSaveButtonState();
 }
 
 function updateSaveButtonState() {
