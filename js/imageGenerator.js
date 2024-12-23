@@ -133,6 +133,9 @@ function finalizeImage(canvas) {
 function updateSaveButtonState() {
     const saveButton = document.getElementById("saveButton");
     saveButton.disabled = !generatedImage; 
+    if (generatedImage) {
+        saveButton.removeAttribute("disabled");
+    }
 }
 
 function saveImage() {
