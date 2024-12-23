@@ -35,6 +35,7 @@ const rules = [
 
 function populateDropdown(id, items) {
     const dropdown = document.getElementById(id);
+    dropdown.innerHTML = "";
     items.forEach(item => {
         const option = document.createElement("option");
         option.value = item.path;

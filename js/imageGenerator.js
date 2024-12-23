@@ -1,8 +1,15 @@
 let generatedImage = null; 
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOMContentLoaded event triggered");
+
+    populateDropdown("stage1", stages);
+    populateDropdown("stage2", stages);
+    populateDropdown("rule", rules);
+    
     document.getElementById("saveButton").disabled = true;
 });
+
 function generateImage() {
     console.log("generateImage function called");
 
@@ -20,17 +27,21 @@ function generateImage() {
         alert('画像ファイルを選択してください。');
         return;
     }
+    const ruleIconType = document.querySelector('input[name="ruleIconType"]:checked').value;
+    let ruleIconPath;
+    if (ruleIconType === "handDrawn" && rule !== "nawabari.png") {
+        ruleIconPath = rule.replace(".png", "_hand_drawn.png");
+    } else {
+        ruleIconPath = rule;
+    }
 
-    console.log("Stage1 selected:", stage1);
-    console.log("Stage2 selected:", stage2);
-    console.log("Rule selected:", rule);
-    console.log("Background file selected:", background);
+    console.log("Rule icon's Path:", ruleIconPath);
 
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 1280;
     canvas.height = 720;
-    console.log("背景画像のパス:", URL.createObjectURL(background));
+    console.log("BG image's Path:", URL.createObjectURL(background));
 
     const bgImg = new Image();
     bgImg.src = URL.createObjectURL(background);
@@ -61,7 +72,7 @@ function generateImage() {
                 drawRoundedImage(context, stage2Img, stageX, stage2Y, stageWidth, stageHeight, stageRoundSize);
 
                 const ruleIcon = new Image();
-                ruleIcon.src = `./rules/${rule}`;
+                ruleIcon.src = `./rules/${ruleIconPath}`;
                 ruleIcon.onload = () => {
                     const iconSize = 120;
                     const iconMargin = 50;
