@@ -122,7 +122,7 @@ function generateImage() {
 function finalizeImage(canvas) {
     const preview = document.getElementById('preview');
     preview.innerHTML = '';
-    const generatedImage = canvas.toDataURL();
+    generatedImage = canvas.toDataURL();
     const resultImg = new Image();
     resultImg.src = generatedImage;
     preview.appendChild(resultImg);
