@@ -22,7 +22,8 @@ const stages = [
     { name: "バイガイ亭", path: "21_baigai.png" },
     { name: "ネギトロ炭鉱", path: "22_negitoro.png" },
     { name: "カジキ空港", path: "23_kajiki.png" },
-    { name: "リュウグウターミナル", path: "24_ryugu.png" }
+    { name: "リュウグウターミナル", path: "24_ryugu.png" },
+    { name: "デカライン高架下", path: "25_dekaline.jpg" },
 ];
 
 const rules = [
